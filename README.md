@@ -34,3 +34,5 @@ make;
 ## Enhancements
 - Add more temperature scales such as the Rankine or Réaumur
 - Add an interactive mode that prompts appropiately
+- Add a parameter to tell program to output only the answer. This can then be piped into another program.
+
