@@ -6,9 +6,18 @@ using std::cin;
 using std::endl;
 using std::stof;
 
+/**
+ * Convert a temperature from one scale to another
+ * temp-convert 32 f c
+ * 
+ * @param temperature
+ * @param from scale
+ * @param to scale
+*/
 int main(int argc, char* argv[]) {
-  float temp, converted;
+  float temperature, converted;
   char from, to;
+  bool success=false;
 
   cout << "Number of command line arguments (argc): " << argc << endl; 
        
@@ -19,7 +28,7 @@ int main(int argc, char* argv[]) {
   
   if(argc == 4) {
     // convert temperature character string to a float
-    temp = stof(argv[1]);
+    temperature = stof(argv[1]);
 
     // save just the first character of the character strings
     // and convert to Uppercase
@@ -30,11 +39,13 @@ int main(int argc, char* argv[]) {
       case 'F':
         if(to == 'C') {
           // tempC = (tempF - 32) * 5 / 9
-          converted = (temp-32.0)*5/9;
+          converted = (temperature-32.0)*5/9;
+          success=true;
         }
         else if(to == 'K') {
           // tempK = (tempF + 459.67) * 5 / 9
-          converted = (temp+459.67)*5/9;
+          converted = (temperature+459.67)*5/9;
+          success=true;
         }
         else {
           cout << "Invalid 'to' input. Expected (c,f,k)" << endl;
@@ -44,11 +55,13 @@ int main(int argc, char* argv[]) {
         if(to == 'F') {
           // tempF = (tempC * 9 / 5) + 32
           // 9 / 5 == 1.8
-          converted = temp*1.8+32.0;
+          converted = temperature*1.8+32.0;
+          success=true;
         }
         else if(to == 'K') {
           // tempK = tempC + 273.15
-          converted = temp+273.15;
+          converted = temperature+273.15;
+          success=true;
         }
         else {
           cout << "Invalid 'to' input. Expected (c,f,k)" << endl;
@@ -58,11 +71,13 @@ int main(int argc, char* argv[]) {
         switch(to) {
           case 'F':
             // tempF = (tempK * 9 / 5) - 459.67
-            converted = temp*1.8-459.67;
+            converted = temperature*1.8-459.67;
+            success=true;
             break;
           case 'C':
             // tempC = tempK - 273.15
-            converted = temp - 273.15;
+            converted = temperature - 273.15;
+            success=true;
             break;
           default:
             cout << "Invalid 'to' input. Expected (c,f,k)" << endl;
@@ -71,7 +86,8 @@ int main(int argc, char* argv[]) {
       default:
        cout << "Invalid 'from' input. Expected (c,f,k)" << endl;
     }
-    cout << temp << from << " is " << converted << to << endl;
+    if(success)
+      cout << temperature << from << " is " << converted << to << endl;
   }
   else
     cout << "Invalid number of inputs. Expected (temp, from, to)" << endl;
