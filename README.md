@@ -22,6 +22,8 @@ Clone the repository:
 ```
 https://github.com/PatrickMalloy/temp-convert.git
 ```
+## Modify Make file
+Edit **makefile** to point to your specific c++ compiler
 
 ## Compile and Run
 ```
